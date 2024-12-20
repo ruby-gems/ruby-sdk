@@ -97,7 +97,7 @@ module Upyun
     private
 
       def fullpath(path)
-        decoded = URI::encode(URI::decode(path.to_s.force_encoding('utf-8')))
+        decoded = CGI.escape(CGI.unescape(path.to_s.force_encoding('utf-8')))
 
         # URI::encode did not encode '[]'
         decoded = decoded.gsub('[', '%5B').gsub(']', '%5D')
